@@ -1,0 +1,50 @@
+Function DivideByOne(number As String) As String
+
+        Dim comprimento As Short = number.Length
+        Dim resto As Short = 1
+        Dim division As String = ""
+        Dim aidingNumber As Short = 0
+        Dim sequence As String = ""
+
+        Dim ContinueDiv As Boolean = True
+
+        Do While resto < number
+            resto = resto * 10
+        Loop
+
+        Do While ContinueDiv
+
+            Do While resto < number
+                resto = resto * 10
+                division &= "0"
+                sequence &= "0"
+            Loop
+
+            If resto Mod number = 0 Then
+                aidingNumber = resto \ number
+                division &= aidingNumber.ToString
+
+                ContinueDiv = False
+            Else
+                aidingNumber = resto \ number
+                division &= aidingNumber.ToString
+                sequence &= aidingNumber.ToString
+                resto = (resto Mod number) * 10
+            End If
+
+            If sequence.Length >= comprimento And sequence.Length > 1 + comprimento And ContinueDiv Then
+
+                For i = 0 To sequence.Length - 1 - comprimento
+                    If sequence.Substring(i, comprimento) = sequence.Substring(sequence.Length - comprimento, comprimento) Then
+                        ContinueDiv = False
+                        division = division.Substring(0, division.Length - comprimento)
+                        division &= "-"
+                        Exit For
+                    End If
+                Next
+
+            End If
+        Loop
+
+        Return division
+    End Function

@@ -1,0 +1,119 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Integer = 0
+
+        Dim arrayAbundants(28123) As Boolean
+        Dim isSum As Boolean
+        For i = 12 To 28123
+            arrayAbundants(i) = isAbundant(i)
+        Next
+
+        For i = 1 To 28123
+            isSum = False
+            For j = 12 To i \ 2
+                If arrayAbundants(j) And arrayAbundants(i - j) Then
+                    isSum = True
+                    Exit For
+                End If
+            Next
+            If Not isSum Then resposta += i
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Function isAbundant(number As Integer) As Boolean
+        Dim sumof As Integer = 1
+
+        For i = 2 To Math.Sqrt(number)
+            If number Mod i = 0 Then
+                If i <> number / i Then
+                    sumof += i + number / i
+                Else
+                    sumof += i
+                End If
+
+                If sumof > number Then Return True
+            End If
+        Next
+
+        Return False
+
+    End Function
+
+End Module
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            bool[] arrayAbundants = new bool[28123 + 1];
+            bool isSum;
+
+            for (int i = 1; i <= 28123; i++){
+                arrayAbundants[i] = isAbundant(i);
+            }
+
+            for (int i = 1; i <= 28123; i++){
+                isSum = false;
+                for (int j = 12; j <= i / 2; j++){
+                    if (arrayAbundants[j] && arrayAbundants[i - j]){
+                        isSum = true;
+                        break;
+                    }
+                }
+                answer += isSum ? 0 : i;
+            }
+
+
+                timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static bool isAbundant(int number){
+            int sum = 1;
+
+            for (int i = 2; i <= Math.Sqrt(number); i++){
+
+                if (number % i == 0){
+                    sum += i != number / i ? i + number / i : i;
+                    if (sum > number) return true;
+                }
+            }
+
+            return false;
+        }
+
+    }
+}

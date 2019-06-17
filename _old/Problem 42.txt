@@ -1,0 +1,78 @@
+Module Module1
+
+    Sub Main()
+
+        Dim endTime As Double
+        Dim answer As Integer = 0
+
+        Dim reader As New System.IO.StreamReader("C:\Users\Joaquin\Dropbox\Project Euler\Sources\Problem 42.txt")
+        Dim names As String = reader.ReadToEnd
+        reader.Close()
+        Dim starTime As Double = Timer
+
+        Dim namesSplit() As String
+        Dim wordScore As Integer
+
+        namesSplit = Split(names.Replace("""", ""), ",")
+
+        For Each name As String In namesSplit
+            wordScore = 0
+
+            For Each letter As Char In name
+                wordScore += Asc(letter.ToString) - 64
+            Next
+
+            If (-1 + Math.Sqrt(1 + (8 * wordScore))) / 2 Mod 1 = 0 Then answer += 1
+
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+End Module
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+
+            string text = System.IO.File.ReadAllText(@"C:\Users\Joaquin\Dropbox\Project Euler\Sources\Problem 42.txt");
+            string[] names = text.Replace("\"","").Split(',');
+            int wordScore;
+
+            timer.Start();
+            foreach(string name in names){
+                wordScore = 0;
+
+                foreach (char letter in name){
+                    wordScore += (int)letter - 64;
+                }
+
+                answer += (-1 + Math.Sqrt(1 + (8 * wordScore))) / 2 % 1 == 0 ? 1 : 0;
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+    }
+}

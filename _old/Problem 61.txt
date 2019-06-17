@@ -1,0 +1,159 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Integer = 0
+
+        Dim poly(5, 9999) As Boolean
+        Dim inc As Integer = 1
+
+
+        Do While (inc * (inc + 1)) / 2 < 10000
+            poly(0, (inc * (inc + 1)) / 2) = True
+            inc += 1
+        Loop
+        inc = 1
+        Do While inc * inc < 10000
+            poly(1, inc * inc) = True
+            inc += 1
+        Loop
+        inc = 1
+        Do While (inc * ((3 * inc) - 1)) / 2 < 10000
+            poly(2, (inc * ((3 * inc) - 1)) / 2) = True
+            inc += 1
+        Loop
+        inc = 1
+        Do While inc * ((2 * inc) - 1) < 10000
+            poly(3, inc * ((2 * inc) - 1)) = True
+            inc += 1
+        Loop
+        inc = 1
+        Do While (inc * ((5 * inc) - 3)) / 2 < 10000
+            poly(4, (inc * ((5 * inc) - 3)) / 2) = True
+            inc += 1
+        Loop
+        inc = 1
+        Do While inc * ((3 * inc) - 2) < 10000
+            poly(5, inc * ((3 * inc) - 2)) = True
+            inc += 1
+        Loop
+
+        Dim polyClean(5, 0) As Boolean
+        Dim polyList() As Integer
+        Dim counter As Integer = 0
+        For i = 1000 To 9999
+            If poly(0, i) Or poly(1, i) Or poly(2, i) Or poly(3, i) Or poly(4, i) Or poly(5, i) Then
+                ReDim Preserve polyClean(5, counter)
+                ReDim Preserve polyList(counter)
+                For j = 0 To 5
+                    polyClean(j, counter) = poly(j, i)
+                Next
+                polyList(counter) = i
+                counter += 1
+            End If
+        Next
+        counter -= 1
+
+        Dim p2 As Integer
+        Dim p3 As Integer
+        Dim p4 As Integer
+        Dim p5 As Integer
+        Dim p6 As Integer
+        Dim n1 As Integer
+        Dim n2 As Integer
+        Dim n3 As Integer
+        Dim n4 As Integer
+        Dim n5 As Integer
+        Dim n6 As Integer
+        Dim cycles As Integer = 0
+        For i = 0 To counter
+            n1 = polyList(i)
+            p2 = 0
+            Do While p2 <= counter
+                n2 = polyList(p2)
+                If CStr(n2).Substring(0, 2) = CStr(n1).Substring(2, 2) Then
+
+                    p3 = 0
+                    Do While p3 <= counter
+                        n3 = polyList(p3)
+                        If CStr(n3).Substring(0, 2) = CStr(n2).Substring(2, 2) Then
+
+                            p4 = 0
+                            Do While p4 <= counter
+                                n4 = polyList(p4)
+                                If CStr(n4).Substring(0, 2) = CStr(n3).Substring(2, 2) Then
+
+                                    p5 = 0
+                                    Do While p5 <= counter
+                                        n5 = polyList(p5)
+                                        If CStr(n5).Substring(0, 2) = CStr(n4).Substring(2, 2) Then
+
+                                            p6 = 0
+                                            Do While p6 <= counter
+                                                n6 = polyList(p6)
+                                                If CStr(n6).Substring(0, 2) = CStr(n5).Substring(2, 2) Then
+
+                                                    If CStr(n1).Substring(0, 2) = CStr(n6).Substring(2, 2) Then
+
+                                                        If polyRepresented(poly, n1, n2, n3, n4, n5, n6) Then
+
+                                                            resposta = n1 + n2 + n3 + n4 + n5 + n6
+                                                            GoTo SkipToEnd
+                                                        End If
+
+                                                    End If
+                                                End If
+                                                p6 += 1
+                                            Loop
+                                        End If
+                                        p5 += 1
+                                    Loop
+                                End If
+                                p4 += 1
+                            Loop
+                        End If
+                        p3 += 1
+                    Loop
+                End If
+                p2 += 1
+            Loop
+        Next
+SkipToEnd:
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Function areCyclic(number() As Integer) As Boolean
+
+        For i = 0 To number.Length - 2
+            If CStr(number(i)).Substring(2, 2) <> CStr(number(i + 1)).Substring(0, 2) Then Return False
+        Next
+        If CStr(number(number.Length - 1)).Substring(2, 2) <> CStr(number(0)).Substring(0, 2) Then Return False
+
+        Return True
+
+    End Function
+    Function polyRepresented(poly(,) As Boolean, ParamArray numbers() As Integer) As Boolean
+        Dim uniques As Short = 0
+        Dim skips(numbers.Length) As Boolean
+
+        For i = 0 To 5
+            Dim atleast As Boolean = False
+            For j = 0 To numbers.Length - 1
+                If poly(i, numbers(j)) And Not skips(j) Then
+                    skips(j) = True
+                    atleast = True
+                    Exit For
+                End If
+            Next
+
+            If atleast Then uniques += 1
+        Next
+
+        If uniques < numbers.Length Then Return False Else Return True
+
+    End Function
+End Module

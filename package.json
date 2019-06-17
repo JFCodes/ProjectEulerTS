@@ -1,0 +1,23 @@
+{
+  "name": "projecteulerts",
+  "version": "1.0.0",
+  "description": "TS Solution for Project Euler problems",
+  "main": "index.js",
+  "scripts": {
+    "exec": "ts-node ./src/run.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JFCodes/ProjectEulerTS.git"
+  },
+  "author": "JFCodes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JFCodes/ProjectEulerTS/issues"
+  },
+  "homepage": "https://github.com/JFCodes/ProjectEulerTS#readme",
+  "devDependencies": {
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  }
+}

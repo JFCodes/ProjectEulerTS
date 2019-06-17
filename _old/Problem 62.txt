@@ -1,0 +1,57 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Long = 0
+
+        Dim cubes As Dictionary(Of String, Integer) = New Dictionary(Of String, Integer)
+        Dim lowest As Dictionary(Of String, Long) = New Dictionary(Of String, Long)
+
+        Dim seed As Integer = 1
+        Dim found As Boolean = False
+        Dim number As Long
+
+        Do While Not found
+            number = seed ^ 3
+            Dim cubeString = orderString(CStr(number))
+
+            If cubes.ContainsKey(cubeString) Then
+                cubes(cubeString) += 1
+            Else
+                cubes.Add(cubeString, 1)
+                lowest.Add(cubeString, number)
+            End If
+
+            If cubes(cubeString) = 5 Then
+                resposta = lowest(cubeString)
+                found = True
+            End If
+
+            seed += 1
+        Loop
+
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Function orderString(target As String) As String
+        orderString = ""
+
+        Dim numbers(9) As Short
+        For i = 0 To target.Length - 1
+            numbers(CInt(target(i).ToString)) += 1
+        Next
+
+        For i = 0 To 9
+            For j = 1 To numbers(i)
+                orderString &= i
+            Next
+        Next
+
+        Return orderString
+    End Function
+End Module

@@ -1,0 +1,114 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Long = 0
+
+        Dim chain(999999) As Integer
+        Dim sequence As Long
+        Dim counter As Integer
+        Dim maxCounter As Integer = 0
+
+        For i = 1 To 999999
+
+            sequence = i
+            counter = 1
+            Do While sequence <> 1
+
+                If sequence Mod 2 = 0 Then sequence = sequence / 2 Else sequence = (3 * sequence) + 1
+
+                If sequence < chain.Length - 1 Then
+                    If chain(sequence) > 0 Then
+                        counter += chain(sequence)
+                        sequence = 1
+                    Else
+                        counter += 1
+                    End If
+                Else
+                    counter += 1
+                End If
+            Loop
+            If counter > maxCounter Then
+                resposta = i
+                maxCounter = counter
+            End If
+            chain(i) = counter
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+End Module
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            long answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int[] chain = new int[1000000];
+            long sequence;
+            int counter;
+            int maxCounter = 0;
+
+            for (int i = 1; i < 1000000; i++){
+
+                sequence = i;
+                counter = 1;
+
+                while (sequence != 1){
+
+                    sequence = sequence % 2 == 0 ? sequence / 2 : (3 * sequence) + 1;
+
+                    if (sequence < chain.Length - 1){
+                        if (chain[sequence] > 0){
+                            counter += chain[sequence];
+                            sequence = 1;
+                        } else {
+                            counter++;
+                        }
+                    } else {
+                        counter++;
+                    }
+                }
+
+                if (counter > maxCounter){
+                    answer = i;
+                    maxCounter = counter;
+                }
+                chain[i] = counter;
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+    }
+}

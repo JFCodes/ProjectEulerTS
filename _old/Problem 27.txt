@@ -1,0 +1,125 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Integer = 0
+
+        Dim consecutive As Short
+        Dim MaxConsecutive As Short
+
+        Dim limit As Integer = 100000
+        Dim primeVector(limit) As Boolean
+        PrimeVectorSieveGenerator(primeVector, limit)
+
+        For j = -999 To 999 Step 2
+
+            If primeVector(Math.Abs(j)) = True Then
+
+                For i = -999 To 999 Step 2
+                    consecutive = 0
+                    Do While primeVector(Math.Abs(consecutive ^ 2 + i * consecutive + j))
+                        consecutive += 1
+                    Loop
+
+                    If consecutive > MaxConsecutive Then
+                        MaxConsecutive = consecutive
+                        resposta = i * j
+                    End If
+                Next
+
+            End If
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Sub PrimeVectorSieveGenerator(ByRef vector() As Boolean, limit As Integer)
+
+        ReDim vector(limit)
+
+        For i = 2 To limit
+            vector(i) = True
+        Next
+        For i = 2 To limit
+            For j = 2 * i To limit Step i
+                vector(j) = False
+            Next
+        Next
+
+    End Sub
+End Module
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int limit = 100000;
+            short consecutive, MaxConsecutive = 0;
+            bool[] primeVector = PrimeVectorSieveGenerator(limit);
+
+            for (int j = -999; j <= 999; j += 2)
+            {
+
+                if (primeVector[Math.Abs(j)]){
+
+                    for (int i = -999; i <= 999; i += 2){
+                        consecutive = 0;
+                        while (primeVector[Math.Abs((consecutive * consecutive) + (i * consecutive) + j)]){
+                            consecutive += 1;
+                        }
+
+                        if(consecutive > MaxConsecutive){
+                            MaxConsecutive = consecutive;
+                            answer = i * j;
+                        }
+                    }
+                }
+
+            }
+
+
+                timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static Boolean[] PrimeVectorSieveGenerator(int limit)
+        {
+
+            bool[] primeVector = new bool[limit + 1];
+            for (int i = 2; i <= limit; i++)
+            {
+                primeVector[i] = true;
+            }
+            for (int i = 2; i <= limit; i++)
+            {
+                for (int j = 2 * i; j <= limit; j += i)
+                {
+                    primeVector[j] = false;
+                }
+            }
+
+            return primeVector;
+        }
+    }
+}

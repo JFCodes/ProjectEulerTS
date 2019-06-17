@@ -1,0 +1,94 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+
+        Dim resposta As Integer = 99999999
+
+        Dim counter As Integer = 0
+        Dim primes() As Integer
+        Dim savethis As String
+
+        Dim primeVector(10000) As Boolean
+        PrimeVectorSieveGenerator(primeVector, 10000)
+
+        For i = 2 To 10000
+            If primeVector(i) Then
+                ReDim Preserve primes(counter)
+                primes(counter) = i
+
+                counter += 1
+            End If
+        Next
+        counter -= 1
+
+
+        Dim starTime As Double = Timer
+
+        Dim pair(counter, counter) As Boolean
+        For i = 0 To counter
+            For j = i + 1 To counter
+                Dim concat = CStr(primes(i)) & CStr(primes(j))
+                Dim concat2 = CStr(primes(j)) & CStr(primes(i))
+                If isPrime(CInt(concat)) And isPrime(CInt(concat2)) Then pair(i, j) = True
+            Next
+        Next
+
+        For i = 0 To counter
+            For j = i + 1 To counter
+                If pair(i, j) Then
+
+                    For k = j + 1 To counter
+                        If pair(i, k) And pair(j, k) Then
+
+                            For l = k + 1 To counter
+                                If pair(i, l) And pair(j, l) And pair(k, l) Then
+
+                                    For m = l + 1 To counter
+                                        If pair(i, m) And pair(j, m) And pair(k, m) And pair(l, m) Then
+                                            Dim sum As Integer = primes(i) + primes(j) + primes(k) + primes(l) + primes(m)
+                                            If sum < resposta Then resposta = sum
+
+                                        End If
+                                    Next
+
+                                End If
+
+                            Next
+                        End If
+                    Next
+
+                End If
+            Next
+        Next
+
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Function isPrime(number As Long) As Boolean
+
+        For i = 2 To Math.Sqrt(number)
+            If number Mod i = 0 Then Return False
+        Next
+
+        Return True
+    End Function
+    Sub PrimeVectorSieveGenerator(ByRef vector() As Boolean, limit As Integer)
+
+        ReDim vector(limit)
+
+        For i = 2 To limit
+            vector(i) = True
+        Next
+        For i = 2 To limit
+            For j = 2 * i To limit Step i
+                vector(j) = False
+            Next
+        Next
+
+    End Sub
+End Module

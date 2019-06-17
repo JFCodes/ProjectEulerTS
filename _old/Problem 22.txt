@@ -1,0 +1,82 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Long = 0
+
+        Dim reader As New System.IO.StreamReader("C:\Users\Joaquin\Dropbox\Project Euler\Sources\Problem 22.txt")
+        Dim names As String = reader.ReadLine
+        Dim namesSplit() As String
+        Dim wordScore As Integer
+
+        names = Replace(names, """", "")
+        names = Replace(names, ",", " ")
+        namesSplit = Split(names, " ")
+        Array.Sort(namesSplit)
+
+        For i = 0 To namesSplit.Length - 1
+            wordScore = 0
+
+            For Each letter As Char In namesSplit(i)
+                wordScore += Asc(letter.ToString) - 64
+            Next
+
+            resposta += wordScore * (i + 1)
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+End Module
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            string[] names = System.IO.File.ReadAllText(@"C:\Users\Joaquin\Dropbox\Project Euler\Sources\Problem 22.txt").Split(',');
+            int wordScore;
+            Array.Sort(names);
+
+            for (int i = 0; i < names.Length; i++){
+                wordScore = 0;
+
+                names[i] = names[i].Trim('"');
+                foreach(char letter in names[i]){
+                    wordScore += (int)letter - 64;
+                }
+                answer += wordScore * (i + 1);
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+    }
+}

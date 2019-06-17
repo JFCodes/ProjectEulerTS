@@ -1,0 +1,19 @@
+ Function isPrime(number As Long) As Boolean
+
+        For i = 2 To Math.Sqrt(number)
+            If number Mod i = 0 Then Return False
+        Next
+        Return True
+    End Function
+
+
+
+
+
+ public static bool isPrime(long number){
+            
+            for(int i = 2; i <= (int) Math.Sqrt(number); i++) {
+                if (number % i == 0) return false;
+            }
+            return true;
+        }

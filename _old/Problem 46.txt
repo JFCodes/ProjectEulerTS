@@ -1,0 +1,130 @@
+Module Module1
+    ''The limit is a arbitrary high value to test if we get the exception.
+    '
+    Sub Main()
+
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Integer = 0
+
+        Dim candidate As Integer = 9
+        Dim limit As Integer = 10000
+        Dim primeVector() As Boolean
+        PrimeVectorSieveGenerator(primeVector, limit)
+
+        Do While answer = 0
+
+            If primeVector(candidate) = False Then
+
+                For j = 2 To candidate - 1
+                    If primeVector(j) Then
+                        If Math.Sqrt((candidate - j) / 2) Mod 1 = 0 Then
+                            Exit For
+                        End If
+                    End If
+                    If j = candidate - 1 Then
+                        answer = candidate
+                    End If
+                Next
+
+            End If
+            candidate += 2
+        Loop
+
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Sub PrimeVectorSieveGenerator(ByRef vector() As Boolean, limit As Integer)
+
+        ReDim vector(limit)
+
+        For i = 2 To limit
+            vector(i) = True
+        Next
+        For i = 2 To limit
+            For j = 2 * i To limit Step i
+                vector(j) = False
+            Next
+        Next
+
+    End Sub
+End Module
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int limit = 10000, candidate = 9;
+            bool[] primeVector = PrimeVectorSieveGenerator(limit);
+
+            while (answer == 0){
+                if (!primeVector[candidate]){
+
+                    for (int j = 2; j < candidate; j++){
+                        if (primeVector[j]){
+                            if (Math.Sqrt((candidate - j) / 2) % 1 == 0){
+                                goto escapeFor;
+                            }
+                        }
+                        if (j == candidate - 1){
+                            answer = candidate;
+                        }
+                    }
+                }
+   escapeFor: ;
+                candidate += 2;
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+
+
+        public static Boolean[] PrimeVectorSieveGenerator(int limit)
+        {
+
+            bool[] primeVector = new bool[limit + 1];
+
+            for (int i = 2; i <= limit; i++)
+            {
+                primeVector[i] = true;
+            }
+            for (int i = 2; i <= limit; i++)
+            {
+                for (int j = 2 * i; j <= limit; j += i)
+                {
+                    primeVector[j] = false;
+                }
+            }
+
+            return primeVector;
+        }
+    }
+}
+
+

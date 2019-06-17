@@ -1,0 +1,16 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Integer = 0
+        
+        
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+
+    End Sub
+
+End Module

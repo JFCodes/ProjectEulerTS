@@ -1,0 +1,117 @@
+Module Module1
+
+    Sub Main()
+
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Integer = 1
+
+        For i = 7654321 To 0 Step -1
+            If isPrime(i) And isPandigital(i) Then
+                answer = i
+                Exit For
+            End If
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+
+    End Sub
+
+    Function isPrime(number As Long) As Boolean
+
+        For i = 2 To Math.Sqrt(number)
+            If number Mod i = 0 Then Return False
+        Next
+        Return True
+    End Function
+
+    Function isPandigital(number As Integer) As Boolean
+
+        Dim primeString As String = CStr(number)
+        Dim digitCounter(9) As Short
+
+        If InStr(primeString, "0") Then Return False
+
+        For Each c As Char In primeString
+            digitCounter(CInt(c.ToString) - 1) += 1
+        Next
+        For i = 0 To primeString.Length - 1
+            If digitCounter(i) <> 1 Then Return False
+        Next
+        Return True
+    End Function
+End Module
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+
+            for (int i = 7654321; i > 0; i--){
+                if (isPrime(i) && isPandigital(i)){
+                    answer = i;
+                    break;
+                }
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static bool isPrime(long number){
+            
+            for(int i = 2; i <= (int) Math.Sqrt(number); i++) {
+                if (number % i == 0) return false;
+            }
+            return true;
+        }
+
+        public static bool isPandigital(int number){
+
+            string numString = Convert.ToString(number);
+            short[] digitCounter = new short[10];
+
+            if (numString.Contains('0')) return false;
+            foreach (char c in numString)
+            {
+                digitCounter[(int)char.GetNumericValue(c)]++;
+            }
+
+
+            for (int i = 1; i < numString.Length; i++)
+            {
+                if (digitCounter[i] != 1) return false;
+            }
+
+            return true;
+        }
+    }
+}

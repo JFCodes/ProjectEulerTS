@@ -1,0 +1,89 @@
+Module Module1
+
+    Sub Main()
+
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Integer = 1
+
+
+        Dim increment As Integer = 0
+        Dim digits As Integer = 0
+        Dim based As Integer = 10
+        Dim nthDigit As Integer = 0
+        Dim position As Integer
+        Dim incString As String
+
+        Do While digits <= 1000000
+            increment += 1
+            incString = CStr(increment)
+            digits += incString.Length
+            If digits >= based Then
+                position = based - (digits - CStr(increment).Length) - 1
+
+                nthDigit = CInt(incString(position).ToString)
+                based *= 10
+                answer *= nthDigit
+            End If
+        Loop
+
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+
+    End Sub
+End Module
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int answer = 1;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int increment = 0, digits = 0, based = 10, nthDigit = 0;
+            int position;
+            string incString;
+
+            while (digits <= 1000000){
+
+                increment++;
+                incString = Convert.ToString(increment);
+                digits += incString.Length;
+
+                if (digits >= based){
+                    position = based - (digits - incString.Length) - 1;
+                    nthDigit = (int) char.GetNumericValue(incString[position]);
+                    based *= 10;
+                    answer *= nthDigit;
+                } 
+            }
+
+
+                timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+    }
+}

@@ -1,0 +1,25 @@
+Module Module1
+
+    'Is proven that any hexagonal number is also triangular. S
+    Sub Main()
+
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Integer = 0
+
+        Dim power As Integer = 1
+        Dim lowerBound As Short = 0
+
+        While 10 ^ ((power - 1) / power) <= 9
+            lowerBound = Math.Ceiling(10 ^ ((power - 1) / power))
+            answer += 9 - lowerBound + 1
+            power += 1
+        End While
+
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+End Module

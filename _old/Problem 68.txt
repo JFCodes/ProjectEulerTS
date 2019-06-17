@@ -1,0 +1,61 @@
+Module Module1
+    'Timer doesnt account until readding procedures are completed 
+    
+    Sub Main()
+        Dim endTime As Double
+        Dim resposta As Integer = -1
+
+        Dim reader As New System.IO.StreamReader("C:\Users\Joaquin\Documents\Project Euler\Sources\Problem 68.txt")
+        Dim line As String
+        Dim splitLine() As String
+        Dim lines As Integer = 0
+        Dim totalLines As Integer = 0
+
+        While reader.Peek <> -1
+            reader.ReadLine()
+            totalLines = totalLines + 1
+        End While
+
+        reader.Close()
+        reader = New System.IO.StreamReader("C:\Users\Joaquin\Documents\Project Euler\Sources\Problem 68.txt")
+
+        Dim triangle(totalLines, totalLines) As Integer
+
+        Do While reader.Peek <> -1
+            line = reader.ReadLine
+            splitLine = Split(line, " ")
+
+            For j = 0 To lines
+                triangle(lines, j) = splitLine(j)
+            Next
+            For j = lines + 1 To totalLines
+                triangle(lines, j) = 0
+            Next
+            lines += 1
+        Loop
+
+        reader.Dispose()
+        Dim starTime As Double = Timer
+
+        For i = 1 To totalLines
+            For j = 0 To totalLines
+                If j = 0 Then
+                    triangle(i, j) = triangle(i, j) + triangle(i - 1, j)
+                Else
+                    triangle(i, j) = triangle(i, j) + Math.Max(triangle(i - 1, j), triangle(i - 1, j - 1))
+                End If
+            Next
+        Next
+
+        For j = 0 To totalLines
+            If triangle(totalLines, j) > resposta Then resposta = triangle(totalLines, j)
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+
+End Module

@@ -1,0 +1,77 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Long = 0
+
+        Dim gridPaths(20, 20) As Long
+
+        For i = 0 To 20
+            gridPaths(0, i) = 1
+            gridPaths(i, 0) = 1
+        Next
+
+        For i = 1 To 20
+            For j = 1 To 20
+                gridPaths(i, j) = gridPaths(i - 1, j) + gridPaths(i, j - 1)
+            Next
+        Next
+        resposta = gridPaths(20, 20)
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+
+End Module
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            long answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            long[,] gridPaths = new long[21, 21];
+
+            for (int i = 0; i <= 20; i++){
+                gridPaths[0, i] = 1;
+                gridPaths[i, 0] = 1;
+            }
+
+            for (int i = 1; i <= 20; i++){
+                for (int j = 1; j <= 20; j++){
+                    gridPaths[i, j] = gridPaths[i - 1, j] + gridPaths[i, j - 1];
+                }
+            }
+            answer = gridPaths[20, 20];
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+    }
+}

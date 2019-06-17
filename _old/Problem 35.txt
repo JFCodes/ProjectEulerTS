@@ -1,0 +1,151 @@
+Module Module1
+
+    Sub Main()
+
+
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Integer = 0
+
+        Dim limit As Integer = 1000000
+        Dim primeVector(limit) As Boolean
+        PrimeVectorSieveGenerator(primeVector, limit)
+
+        Dim numString As String
+        Dim rotation As Integer
+        Dim rotationsArePrime As Boolean
+
+        For i = 2 To limit
+            If primeVector(i) Then
+                numString = CStr(i)
+                rotationsArePrime = True
+
+                If Not InStr(numString, "0") Or Not InStr(numString, "2") Or Not InStr(numString, "4") Or Not InStr(numString, "6") Or Not InStr(numString, "8") Or Not InStr(numString, "5") Then
+
+                    For j = 1 To numString.Length
+                        numString = numString.Remove(0, 1) & numString.Substring(0, 1)
+                        rotation = CInt(numString)
+
+                        If Not primeVector(rotation) Then
+                            rotationsArePrime = False
+                            Exit For
+                        End If
+                    Next
+
+                    If rotationsArePrime Then answer += 1
+                End If
+
+            End If
+
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+
+    End Sub
+
+    Sub PrimeVectorSieveGenerator(ByRef vector() As Boolean, limit As Integer)
+
+        ReDim vector(limit)
+
+        For i = 2 To limit
+            vector(i) = True
+        Next
+        For i = 2 To limit
+            For j = 2 * i To limit Step i
+                vector(j) = False
+            Next
+        Next
+
+    End Sub
+End Module
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int limit = 1000000;
+            bool[] primeVector = PrimeVectorSieveGenerator(limit);
+
+            string numString;
+            int rotation;
+            bool rotationsArePrime;
+
+            for (int i = 2; i <= limit; i++)
+            {
+                if (primeVector[i])
+                {
+                    numString = Convert.ToString(i);
+                    rotationsArePrime = true;
+
+                    if ((!numString.Contains('0') && !numString.Contains('2') && !numString.Contains('4') && !numString.Contains('6') && !numString.Contains('8') && !numString.Contains('5')) || numString == "2"  || numString == "5")
+                    {
+
+                        for (int j = 1; j <= numString.Length; j++)
+                        {
+                            numString = numString.Remove(0, 1) + numString.Substring(0, 1);
+                            rotation = Convert.ToInt32(numString);
+
+                            if (!primeVector[rotation])
+                            {
+                                rotationsArePrime = false;
+                                break;
+                            }
+                        }
+
+                       
+                        answer += rotationsArePrime ? 1 : 0;
+                    }
+                }
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static Boolean[] PrimeVectorSieveGenerator(int limit)
+        {
+
+            bool[] primeVector = new bool[limit + 1];
+
+            for (int i = 2; i <= limit; i++)
+            {
+                primeVector[i] = true;
+            }
+            for (int i = 2; i <= limit; i++)
+            {
+                for (int j = 2 * i; j <= limit; j += i)
+                {
+                    primeVector[j] = false;
+                }
+            }
+
+            return primeVector;
+        }
+    }
+}

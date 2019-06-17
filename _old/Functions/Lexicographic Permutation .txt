@@ -1,0 +1,90 @@
+Function lexicographicPermutation(sequence As String) As String
+
+        If sequence.Length = 1 Then Return sequence
+
+        Dim indexK As Integer = -1
+        Dim indexI As Integer = -1
+
+        For i = 0 To sequence.Length - 2
+            If sequence(i).ToString < sequence(i + 1).ToString Then
+                If i > indexK Then indexK = i
+            End If
+        Next
+
+        If indexK = -1 Then Return sequence
+
+        For i = indexK + 1 To sequence.Length - 1
+            If sequence(indexK).ToString < sequence(i).ToString Then
+                indexI = i
+            End If
+        Next
+
+        Dim indexKvalue As String = sequence(indexK).ToString
+        Dim indexIvalue As String = sequence(indexI).ToString
+
+        sequence = Replace(sequence, sequence(indexK).ToString, "K")
+        sequence = Replace(sequence, sequence(indexI).ToString, "I")
+
+        sequence = Replace(sequence, "K", indexIvalue)
+        sequence = Replace(sequence, "I", indexKvalue)
+
+        Dim saveSequence As String = sequence
+        sequence = ""
+
+        For i = 0 To saveSequence.Length - 1
+            If i <= indexK Then
+                sequence &= saveSequence(i).ToString
+            Else
+                sequence &= saveSequence(saveSequence.Length + indexK - i).ToString
+            End If
+        Next
+
+        Return sequence
+
+
+    End Function
+
+
+
+
+
+
+     public static string lexicographicPermutation(string sequence){
+
+            if (sequence.Length == 1) return sequence;
+
+            int indexK = -1, indexI = -1;
+
+            for (int i = 0; i < sequence.Length - 1; i++){
+                if ((int)char.GetNumericValue(sequence[i]) < (int)char.GetNumericValue(sequence[i + 1])){
+                    indexK = i > indexK ? i : indexK;
+                }
+            }
+
+            if (indexK == -1) return sequence;
+
+            for (int i = indexK + 1; i < sequence.Length; i++){
+                if ((int)char.GetNumericValue(sequence[indexK]) < (int)char.GetNumericValue(sequence[i])){
+                    indexI = i;
+                }
+            }
+
+            char Kchar = sequence[indexK], Ichar = sequence[indexI];
+
+            sequence = sequence.Replace(Kchar, 'K');
+            sequence = sequence.Replace(Ichar, 'I');
+            sequence = sequence.Replace('K',  Ichar);
+            sequence = sequence.Replace('I', Kchar);
+
+            System.Text.StringBuilder result = new System.Text.StringBuilder();
+
+            for (int i = 0; i < sequence.Length; i++){
+                if (i <= indexK){
+                    result.Append(sequence[i]);
+                } else {
+                    result.Append(sequence[sequence.Length + indexK - i]);
+                }
+            }
+
+            return result.ToString();
+        }

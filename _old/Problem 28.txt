@@ -1,0 +1,79 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Long = 1
+
+        Dim elementos As Short = 0
+        Dim lastnumber As Integer = 1
+        Dim number As Integer = 0
+
+        Dim corner1 As Integer
+        Dim corner2 As Integer
+        Dim corner3 As Integer
+        Dim corner4 As Integer
+
+        For i = 2 To 501
+
+            corner1 = lastnumber + 2 * (i - 1)
+            corner2 = corner1 + 2 * (i - 1)
+            corner3 = corner2 + 2 * (i - 1)
+            corner4 = corner3 + 2 * (i - 1)
+
+            elementos = 8 * i - 8
+            lastnumber = lastnumber + elementos
+
+            resposta += corner1 + corner2 + corner3 + corner4
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+End Module
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            long answer = 1;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int elements, lastNumber = 1, number = 0;
+
+            int corner1, corner2, corner3, corner4;
+
+            for (int i = 2; i <= 501; i++){
+                corner1 = lastNumber + 2 * (i - 1);
+                corner2 = corner1 + 2 * (i - 1);
+                corner3 = corner2 + 2 * (i - 1);
+                corner4 = corner3 + 2 * (i - 1);
+
+                elements = 8 * i - 8;
+                lastNumber += elements;
+
+                answer += corner1 + corner2 + corner3 + corner4;
+            }
+
+                timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+    }
+}

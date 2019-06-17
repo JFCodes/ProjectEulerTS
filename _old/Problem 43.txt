@@ -1,0 +1,256 @@
+Module Module1
+
+    Sub Main()
+
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Long = 0
+
+        Dim digits() As String = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
+        Dim divisors() As Short = {2, 3, 5, 7, 11, 13, 17}
+
+        Dim j As Short = 1
+        Dim N As Integer
+        Dim Nstr As String
+
+        Dim candidates As List(Of String) = New List(Of String)
+
+        Dim permut5 As String
+        Dim nextPermut As String
+        Dim fullNumber As String
+
+        While j * 17 < 1000
+            N = j * 17
+            Nstr = CStr(N)
+            If N < 100 Then Nstr = "0" & Nstr
+            If OnlyUniques(Nstr, digits) Then candidates.Add(Nstr)
+            j += 1
+        End While
+
+        For Each ele As String In candidates
+            permut5 = ""
+            For Each digit In digits
+                If Not ele.Contains(digit) Then permut5 &= digit
+            Next
+
+            nextPermut = lexicographicPermutation(permut5)
+            While nextPermut <> permut5
+                permut5 = nextPermut
+                nextPermut = lexicographicPermutation(nextPermut)
+                fullNumber = nextPermut & ele
+                For i = 1 To 7
+                    If CLng(fullNumber.Substring(i, 3)) Mod divisors(i - 1) <> 0 Then Continue While
+                Next
+
+                answer += CLng(fullNumber)
+            End While
+
+        Next
+        
+        endTime = Timer
+        Console.WriteLine("Answer: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+
+    End Sub
+
+    Function OnlyUniques(sequence As String, elements() As String) As Boolean
+
+        Dim counter(elements.Length - 1) As Short
+
+        For Each c As Char In sequence
+            For i = 0 To elements.Length - 1
+                If elements(i) = c.ToString Then
+                    counter(i) += 1
+                    Exit For
+                End If
+            Next
+        Next
+
+        For i = 0 To counter.Length - 1
+            If counter(i) > 1 Then Return False
+        Next
+
+        Return True
+
+    End Function
+    Function lexicographicPermutation(sequence As String) As String
+
+        If sequence.Length = 1 Then Return sequence
+
+        Dim indexK As Integer = -1
+        Dim indexI As Integer = -1
+
+        For i = 0 To sequence.Length - 2
+            If sequence(i).ToString < sequence(i + 1).ToString Then
+                If i > indexK Then indexK = i
+            End If
+        Next
+
+        If indexK = -1 Then Return sequence
+
+        For i = indexK + 1 To sequence.Length - 1
+            If sequence(indexK).ToString < sequence(i).ToString Then
+                indexI = i
+            End If
+        Next
+
+        Dim indexKvalue As String = sequence(indexK).ToString
+        Dim indexIvalue As String = sequence(indexI).ToString
+
+        sequence = Replace(sequence, sequence(indexK).ToString, "K")
+        sequence = Replace(sequence, sequence(indexI).ToString, "I")
+        sequence = Replace(sequence, "K", indexIvalue)
+        sequence = Replace(sequence, "I", indexKvalue)
+
+        Dim saveSequence As String = sequence
+        sequence = ""
+
+        For i = 0 To saveSequence.Length - 1
+            If i <= indexK Then
+                sequence &= saveSequence(i).ToString
+            Else
+                sequence &= saveSequence(saveSequence.Length + indexK - i).ToString
+            End If
+        Next
+
+        Return sequence
+
+    End Function
+End Module
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            long answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            string[] digits = {"0" ,"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+            short[] divisors = { 2, 3, 5, 7, 11, 13, 17 };
+
+            short j = 1;
+            int N;
+            string Nstr;
+            string permut5, nextPermut, fullNumber;
+
+            List<string> candidates = new List<string>();
+
+            while (j * 17 < 1000){
+                N = j * 17;
+                Nstr = Convert.ToString(N);
+                if (N < 100) Nstr = "0" + Nstr;
+                if(OnlyUniques(Nstr, digits)) candidates.Add(Nstr);
+                j++;
+            }
+
+            foreach(string ele in candidates){
+                permut5 = "";
+                foreach(string digit in digits){
+                    if (!ele.Contains(digit)) permut5 += digit;
+                }
+
+
+                nextPermut = lexicographicPermutation(permut5);
+                while(nextPermut != permut5){
+                    permut5 = nextPermut;
+                    nextPermut = lexicographicPermutation(permut5);
+                    fullNumber = nextPermut + ele;
+
+                    for(int i = 1; i < 8; i++){
+                        if (Convert.ToInt64(fullNumber.Substring(i, 3)) % divisors[i - 1] != 0) goto continueWhile;    
+                    }
+
+                    answer += Convert.ToInt64(fullNumber);
+        continueWhile:;
+                }
+            }
+
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static bool OnlyUniques(string sequence, string[] elements){
+
+            short[] counter = new short[elements.Length];
+            
+            foreach (char c in sequence){
+                for (int i = 0; i < elements.Length; i++ ){
+                    if (elements[i][0] == c){
+
+                        counter[i]++;
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < counter.Length; i++){
+                if (counter[i] > 1) return false;
+            }
+
+            return true;
+        }
+
+        public static string lexicographicPermutation(string sequence){
+
+            if (sequence.Length == 1) return sequence;
+
+            int indexK = -1, indexI = -1;
+
+            for (int i = 0; i < sequence.Length - 1; i++){
+                if ((int)char.GetNumericValue(sequence[i]) < (int)char.GetNumericValue(sequence[i + 1])){
+                    indexK = i > indexK ? i : indexK;
+                }
+            }
+
+            if (indexK == -1) return sequence;
+
+            for (int i = indexK + 1; i < sequence.Length; i++){
+                if ((int)char.GetNumericValue(sequence[indexK]) < (int)char.GetNumericValue(sequence[i])){
+                    indexI = i;
+                }
+            }
+
+            char Kchar = sequence[indexK], Ichar = sequence[indexI];
+
+            sequence = sequence.Replace(Kchar, 'K');
+            sequence = sequence.Replace(Ichar, 'I');
+            sequence = sequence.Replace('K',  Ichar);
+            sequence = sequence.Replace('I', Kchar);
+
+            System.Text.StringBuilder result = new System.Text.StringBuilder();
+
+            for (int i = 0; i < sequence.Length; i++){
+                if (i <= indexK){
+                    result.Append(sequence[i]);
+                } else {
+                    result.Append(sequence[sequence.Length + indexK - i]);
+                }
+            }
+
+            return result.ToString();
+        }
+    }
+}

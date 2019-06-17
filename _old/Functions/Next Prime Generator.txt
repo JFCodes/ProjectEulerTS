@@ -1,0 +1,24 @@
+Public Function FindNextPrime(ByVal CurrentPrime) As Integer
+
+        Dim FoundNextPrime As Boolean = False
+        Dim PrimeCandidate As Boolean = True
+
+        FindNextPrime = CurrentPrime
+
+        Do While FoundNextPrime = False
+            FindNextPrime += 1
+
+            PrimeCandidate = True
+            For i = 2 To FindNextPrime - 1
+                If FindNextPrime Mod i = 0 Then
+                    PrimeCandidate = False
+                    Exit For
+                End If
+            Next
+
+            FoundNextPrime = PrimeCandidate
+        Loop
+
+        Return FindNextPrime
+
+    End Function

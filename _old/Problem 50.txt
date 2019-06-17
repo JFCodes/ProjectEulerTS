@@ -1,0 +1,149 @@
+Module Module1
+
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Integer = 0
+
+        Dim limit As Integer = 1000000
+        Dim primeVector() As Boolean
+        PrimeVectorSieveGenerator(primeVector, limit)
+
+        Dim primeList As New List(Of Integer)
+        Dim max_sequence = 545
+        Dim testSum As Long = 0
+        Dim startingPoint As Integer = 0
+        
+        For i = 2 To limit
+            If primeVector(i) Then
+                primeList.Add(i)
+            End If
+        Next
+
+        For i = max_sequence To 1 Step -1
+            startingPoint = 0
+
+            For j = 0 To max_sequence
+                testSum = 0
+                For k = startingPoint To i + startingPoint
+                    testSum += primeList(k)
+                Next
+                If testSum >= limit Then Exit For
+                If primeVector(testSum) Then
+                    answer = testSum
+                    Exit For
+                End If
+
+                startingPoint += 1
+                testSum = 0
+            Next
+
+            If answer <> 0 Then Exit For
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+    Sub PrimeVectorSieveGenerator(ByRef vector() As Boolean, limit As Integer)
+
+        ReDim vector(limit)
+
+        For i = 2 To limit
+            vector(i) = True
+        Next
+        For i = 2 To limit
+            For j = 2 * i To limit Step i
+                vector(j) = False
+            Next
+        Next
+
+    End Sub
+End Module
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            long answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int limit = 1000000;
+            bool[] primeVector = PrimeVectorSieveGenerator(limit);
+
+            var primeList = new List<int>();
+            int max_sequence = 545;
+            long testSum = 0;
+            int startingPoint = 0;
+
+            for(int i = 2; i <= limit; i++){
+                if(primeVector[i]){
+                    primeList.Add(i);
+                }
+            }
+
+            for (int i = max_sequence; i > 1; i--){
+                startingPoint = 0;
+
+                for (int j = 0; j <= max_sequence; j++){
+                    testSum = 0;
+
+                    for (int k = startingPoint; k < i + startingPoint; k++){
+                        testSum += primeList[k];
+                    }
+
+                    if (testSum >= limit) {break;}
+                    if (primeVector[testSum]){
+                        answer = testSum;
+                        j = i + startingPoint;
+                    }
+
+                    startingPoint += 1;
+                    testSum = 0;
+                }
+                if (answer != 0) { break; }
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static Boolean[] PrimeVectorSieveGenerator(int limit)
+        {
+
+            bool[] primeVector = new bool[limit + 1];
+
+            for (int i = 2; i <= limit; i++)
+            {
+                primeVector[i] = true;
+            }
+            for (int i = 2; i <= limit; i++)
+            {
+                for (int j = 2 * i; j <= limit; j += i)
+                {
+                    primeVector[j] = false;
+                }
+            }
+
+            return primeVector;
+        }
+    }
+}

@@ -1,0 +1,157 @@
+Module Module1
+    'Theres a direct formula for this problem but im interested in improving this approach
+
+    Sub Main()
+
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Integer = 2 'We won't compute the first 2 numbers
+
+        Dim numberOne As String = "1"
+        Dim numberTwo As String = "1"
+        Dim numberFibo As String = ""
+
+        Do While numberFibo.Length < 1000
+            numberFibo = SumofBigNumbers(numberOne, numberTwo)
+
+            numberOne = numberTwo
+            numberTwo = numberFibo
+
+            resposta += 1
+        Loop
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Function SumofBigNumbers(number1 As String, number2 As String) As String
+        Dim result As String = ""
+        Dim maxLength As Integer = Math.Max(number1.Length, number2.Length)
+        Dim char1 As Short
+        Dim char2 As Short
+        Dim transporter As Short = 0
+        Dim subSum As Integer
+
+        For i = 1 To maxLength
+            If i <= number1.Length Then
+                char1 = CInt(number1(number1.Length - i).ToString)
+            Else
+                char1 = 0
+            End If
+
+            If i <= number2.Length Then
+                char2 = CInt(number2(number2.Length - i).ToString)
+            Else
+                char2 = 0
+            End If
+
+            subSum = char1 + char2 + transporter
+            result = CStr(subSum Mod 10) & result
+            transporter = subSum \ 10
+        Next
+
+        If transporter > 0 Then
+            result = transporter & result
+        End If
+
+        Return result
+    End Function
+
+End Module
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            int answer = 2;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            string numberOne = "1", numberTwo = "1", numberFibo = "";
+
+            while (numberFibo.Length < 1000){
+                numberFibo = SumofBigNumbers(numberOne, numberTwo);
+
+                numberOne = numberTwo;
+                numberTwo = numberFibo;
+
+                answer++;
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static string SumofBigNumbers(string number1, string number2)
+        {
+
+            string result = "";
+            int maxLength = Math.Max(number1.Length, number2.Length);
+            short char1, char2;
+            short transporter = 0;
+            int subSum;
+
+            for (int i = 1; i <= maxLength; i++)
+            {
+
+                if (i <= number1.Length)
+                {
+                    char1 = (short)Char.GetNumericValue(number1[number1.Length - i]);
+                }
+                else
+                {
+                    char1 = 0;
+                }
+
+                if (i <= number2.Length)
+                {
+                    char2 = (short)Char.GetNumericValue(number2[number2.Length - i]);
+                }
+                else
+                {
+                    char2 = 0;
+                }
+
+                subSum = char1 + char2 + transporter;
+                result = Convert.ToString(subSum % 10) + result;
+                transporter = Convert.ToInt16(subSum / 10);
+            }
+
+            if (transporter > 0)
+            {
+                result = Convert.ToString(transporter) + result;
+            }
+
+            return result;
+        }
+    }
+}

@@ -1,0 +1,283 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As String
+
+        Dim primeCounter As Integer = 0
+        Dim target = 8
+
+        Dim limite As Integer = 999999
+        Dim primeVector(limite) As Boolean
+        For i = 2 To limite
+            primeVector(i) = True
+        Next
+        For i = 2 To limite
+            For j = 2 * i To limite Step i
+                primeVector(j) = False
+            Next
+        Next
+
+        Dim counter As Integer = 0
+        For i = 100000 To limite
+            If primeVector(i) Then
+
+                resposta = Replace(test1Replacement(i, primeCounter, primeVector), "*", "0")
+                If primeCounter = 8 Then Exit For
+                resposta = Replace(test2Replacements(i, primeCounter, primeVector), "*", "0")
+                If primeCounter = 8 Then Exit For
+                resposta = Replace(test3Replacements(i, primeCounter, primeVector), "*", "0")
+                If primeCounter = 8 Then Exit For
+                resposta = Replace(test4Replacements(i, primeCounter, primeVector), "*", "0")
+                If primeCounter = 8 Then Exit For
+                resposta = Replace(test5Replacements(i, primeCounter, primeVector), "*", "0")
+                If primeCounter = 8 Then Exit For
+
+            End If
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+    Function test1Replacement(number As Integer, ByRef primeCounter As Integer, primeVector() As Boolean) As String
+        Dim smallest As String = 0
+        Dim numberString As String = CStr(number)
+        Dim counter As Integer = 0
+        Dim DummyString As String = 0
+
+        primeCounter = 0
+
+        For i = 0 To numberString.Length - 1
+
+            counter = 0
+            For n = 0 To 9
+                DummyString = numberString.Remove(i, 1)
+                DummyString = DummyString.Insert(i, CStr(n))
+
+                If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then counter += 1
+            Next
+            If counter > primeCounter Then
+                primeCounter = counter
+
+                For n = 0 To 9
+                    DummyString = numberString.Remove(i, 1)
+                    DummyString = DummyString.Insert(i, CStr(n))
+
+                    If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then
+                        smallest = DummyString
+                        Exit For
+                    End If
+                Next
+            End If
+
+        Next
+
+        Return smallest
+    End Function
+    Function test2Replacements(number As Integer, ByRef primeCounter As Integer, primeVector() As Boolean) As String
+        Dim smallest As String = 0
+        Dim numberString As String = CStr(number)
+        Dim counter As Integer = 0
+        Dim DummyString As String = 0
+
+        primeCounter = 0
+
+        For i = 0 To numberString.Length - 2
+            For j = i + 1 To numberString.Length - 1
+
+                counter = 0
+                For n = 0 To 9
+                    DummyString = numberString.Remove(i, 1)
+                    DummyString = DummyString.Insert(i, CStr(n))
+                    DummyString = DummyString.Remove(j, 1)
+                    DummyString = DummyString.Insert(j, CStr(n))
+
+                    If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then counter += 1
+                Next
+                If counter > primeCounter Then
+                    primeCounter = counter
+                   
+                    For n = 0 To 9
+                        DummyString = numberString.Remove(i, 1)
+                        DummyString = DummyString.Insert(i, CStr(n))
+                        DummyString = DummyString.Remove(j, 1)
+                        DummyString = DummyString.Insert(j, CStr(n))
+
+                        If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then
+                            smallest = DummyString
+                            Exit For
+                        End If
+                    Next
+                End If
+
+            Next
+        Next
+
+        Return smallest
+    End Function
+    Function test3Replacements(number As Integer, ByRef primeCounter As Integer, primeVector() As Boolean) As String
+        Dim smallest As String = 0
+        Dim numberString As String = CStr(number)
+        Dim counter As Integer = 0
+        Dim DummyString As String = 0
+
+        primeCounter = 0
+
+        For i = 0 To numberString.Length - 3
+            For j = i + 1 To numberString.Length - 2
+                For k = j + 1 To numberString.Length - 1
+
+                    counter = 0
+                    For n = 0 To 9
+                        DummyString = numberString.Remove(i, 1)
+                        DummyString = DummyString.Insert(i, CStr(n))
+                        DummyString = DummyString.Remove(j, 1)
+                        DummyString = DummyString.Insert(j, CStr(n))
+                        DummyString = DummyString.Remove(k, 1)
+                        DummyString = DummyString.Insert(k, CStr(n))
+
+                        If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then counter += 1
+                    Next
+                    If counter > primeCounter Then
+                        primeCounter = counter
+
+                        For n = 0 To 9
+                            DummyString = numberString.Remove(i, 1)
+                            DummyString = DummyString.Insert(i, CStr(n))
+                            DummyString = DummyString.Remove(j, 1)
+                            DummyString = DummyString.Insert(j, CStr(n))
+                            DummyString = DummyString.Remove(k, 1)
+                            DummyString = DummyString.Insert(k, CStr(n))
+
+                            If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then
+                                smallest = DummyString
+                                Exit For
+                            End If
+                        Next
+                    End If
+
+                Next
+            Next
+        Next
+
+        Return smallest
+    End Function
+    Function test4Replacements(number As Integer, ByRef primeCounter As Integer, primeVector() As Boolean) As String
+        Dim smallest As String = 0
+        Dim numberString As String = CStr(number)
+        Dim counter As Integer = 0
+        Dim DummyString As String = 0
+
+        primeCounter = 0
+
+        For i = 0 To numberString.Length - 4
+            For j = i + 1 To numberString.Length - 3
+                For k = j + 1 To numberString.Length - 2
+                    For l = k + 1 To numberString.Length - 1
+
+                        counter = 0
+                        For n = 0 To 9
+                            DummyString = numberString.Remove(i, 1)
+                            DummyString = DummyString.Insert(i, CStr(n))
+                            DummyString = DummyString.Remove(j, 1)
+                            DummyString = DummyString.Insert(j, CStr(n))
+                            DummyString = DummyString.Remove(k, 1)
+                            DummyString = DummyString.Insert(k, CStr(n))
+                            DummyString = DummyString.Remove(l, 1)
+                            DummyString = DummyString.Insert(l, CStr(n))
+
+                            If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then counter += 1
+                        Next
+                        If counter > primeCounter Then
+                            primeCounter = counter
+                           
+                            For n = 0 To 9
+                                DummyString = numberString.Remove(i, 1)
+                                DummyString = DummyString.Insert(i, CStr(n))
+                                DummyString = DummyString.Remove(j, 1)
+                                DummyString = DummyString.Insert(j, CStr(n))
+                                DummyString = DummyString.Remove(k, 1)
+                                DummyString = DummyString.Insert(k, CStr(n))
+                                DummyString = DummyString.Remove(l, 1)
+                                DummyString = DummyString.Insert(l, CStr(n))
+
+                                If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then
+                                    smallest = DummyString
+                                    Exit For
+                                End If
+                            Next
+                        End If
+
+                    Next
+                Next
+            Next
+        Next
+
+
+        Return smallest
+    End Function
+    Function test5Replacements(number As Integer, ByRef primeCounter As Integer, primeVector() As Boolean) As String
+        Dim smallest As String = 0
+        Dim numberString As String = CStr(number)
+        Dim counter As Integer = 0
+        Dim DummyString As String = 0
+
+        primeCounter = 0
+
+        For i = 0 To numberString.Length - 5
+            For j = i + 1 To numberString.Length - 4
+                For k = j + 1 To numberString.Length - 3
+                    For l = k + 1 To numberString.Length - 2
+                        For h = l + 1 To numberString.Length - 1
+
+                            counter = 0
+                            For n = 0 To 9
+                                DummyString = numberString.Remove(i, 1)
+                                DummyString = DummyString.Insert(i, CStr(n))
+                                DummyString = DummyString.Remove(j, 1)
+                                DummyString = DummyString.Insert(j, CStr(n))
+                                DummyString = DummyString.Remove(k, 1)
+                                DummyString = DummyString.Insert(k, CStr(n))
+                                DummyString = DummyString.Remove(l, 1)
+                                DummyString = DummyString.Insert(l, CStr(n))
+                                DummyString = DummyString.Remove(h, 1)
+                                DummyString = DummyString.Insert(h, CStr(n))
+
+                                If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then counter += 1
+                            Next
+                            If counter > primeCounter Then
+                                primeCounter = counter
+                                
+                                For n = 0 To 9
+                                    DummyString = numberString.Remove(i, 1)
+                                    DummyString = DummyString.Insert(i, CStr(n))
+                                    DummyString = DummyString.Remove(j, 1)
+                                    DummyString = DummyString.Insert(j, CStr(n))
+                                    DummyString = DummyString.Remove(k, 1)
+                                    DummyString = DummyString.Insert(k, CStr(n))
+                                    DummyString = DummyString.Remove(l, 1)
+                                    DummyString = DummyString.Insert(l, CStr(n))
+                                    DummyString = DummyString.Remove(h, 1)
+                                    DummyString = DummyString.Insert(h, CStr(n))
+
+                                    If DummyString(0).ToString <> "0" And primeVector(CInt(DummyString)) Then
+                                        smallest = DummyString
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+
+                        Next
+                    Next
+                Next
+            Next
+        Next
+
+
+        Return smallest
+    End Function
+End Module

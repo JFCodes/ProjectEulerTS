@@ -1,0 +1,24 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Long = 0
+
+        Dim parcel As Long = 1
+
+        For i = 1 To 7830457
+            parcel = (parcel * 2) Mod 10000000000
+        Next
+
+        parcel *= 28433
+        parcel += 1
+
+        resposta = parcel Mod 10000000000
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+End Module

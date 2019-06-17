@@ -1,0 +1,103 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Integer = 0
+
+        Dim limit As Integer = 1000000
+        Dim numFactors(limit) As Integer
+        Dim finder As Integer = 0
+
+        For i = 2 To limit
+            If numFactors(i) <> 0 Then Continue For
+
+            For j = i * 2 To limit Step i
+                numFactors(j) += 1
+            Next
+        Next
+
+        For i = 0 To limit
+            If numFactors(i) < 4 Then
+                finder = 0
+                Continue For
+            End If
+            finder += 1
+            If finder = 4 Then
+                resposta = i - 3
+                Exit For
+            End If
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+End Module
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int limit = 1000000, finder = 0;
+            int[] numFactors = new int[limit+1];
+
+            for (int i = 2; i <= limit; i++){
+                if (numFactors[i] != 0){
+                    continue;
+                }
+
+                for (int j = i * 2; j <= limit; j += i){
+                    numFactors[j]++;
+                }
+            }
+
+            for (int i = 0; i <= limit; i++){
+                
+                if (numFactors[i] < 4){
+
+                    finder = 0;
+                    continue;
+
+                }
+
+                finder += 1;
+
+                if (finder == 4){
+                    answer = i - 3;
+                    i = limit + 1;
+                }
+            }
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+

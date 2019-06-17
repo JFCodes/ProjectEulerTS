@@ -1,0 +1,98 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim resposta As Long = 0
+
+
+        Dim limit As Integer = 2000000
+        Dim primeVector() As Boolean
+        PrimeVectorSieveGenerator(primeVector, limit)
+
+        For i = 2 To limit
+            If primeVector(i) Then resposta += i
+        Next
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & resposta)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+
+    End Sub
+
+    Sub PrimeVectorSieveGenerator(ByRef vector() As Boolean, limit As Integer)
+
+        ReDim vector(limit)
+
+        For i = 2 To limit
+            vector(i) = True
+        Next
+        For i = 2 To limit
+            For j = 2 * i To limit Step i
+                vector(j) = False
+            Next
+        Next
+
+    End Sub
+End Module
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            int limit = 2000000;
+            bool[] primeVector = PrimeVectorSieveGenerator(limit);
+
+            for (int i = 2; i <= limit; i++)
+            {
+                answer += primeVector[i] ? i : 0;
+            }
+
+            timer.Stop();
+            Console.WriteLine("Resposta: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+
+        public static Boolean[] PrimeVectorSieveGenerator(int limit)
+        {
+
+            bool[] primeVector = new bool[limit + 1];
+
+            for (int i = 2; i <= limit; i++)
+            {
+                primeVector[i] = true;
+            }
+            for (int i = 2; i <= limit; i++)
+            {
+                for (int j = 2 * i; j <= limit; j += i)
+                {
+                    primeVector[j] = false;
+                }
+            }
+
+            return primeVector;
+        }
+    }
+}
+
+        

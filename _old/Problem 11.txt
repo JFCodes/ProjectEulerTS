@@ -1,0 +1,174 @@
+Module Module1
+
+    Sub Main()
+        Dim endTime As Double
+        Dim starTime As Double = Timer
+        Dim answer As Long = 0
+
+        Dim reader As New System.IO.StreamReader("C:\Users\Joaquin\Dropbox\Project Euler\Sources\Problem 11.txt")
+        Dim split_lines() As String = Split(reader.readToEnd, vbNewLine)
+        reader.close()
+
+        Dim n_matrix(19, 19) As Integer
+
+        For i = 0 To 19
+
+            Dim split_numbers = Split(split_lines(i), " ")
+
+            For j = 0 To 19
+                n_matrix(i, j) = CInt(split_numbers(j))
+            Next
+
+        Next
+
+        Dim test As Long = 0
+
+        'Up to Down Directions:
+        For j = 0 To 16
+            For i = 0 To 19
+
+                test = n_matrix(j, i) * n_matrix(j + 1, i) _
+                    * n_matrix(j + 2, i) * n_matrix(j + 3, i)
+
+                If test > answer Then answer = test
+
+            Next
+        Next
+
+        'Right to Left Directions:
+        For j = 0 To 19
+            For i = 0 To 16
+
+                test = n_matrix(j, i) * n_matrix(j, i + 1) _
+                    * n_matrix(j, i + 2) * n_matrix(j, i + 3)
+                If test > answer Then answer = test
+
+            Next
+        Next
+
+        'Diagonal from up left to down right:
+        For j = 0 To 16
+            For i = 0 To 16
+
+                test = n_matrix(j, i) * n_matrix(j + 1, i + 1) _
+                    * n_matrix(j + 2, i + 2) * n_matrix(j + 3, i + 3)
+                If test > answer Then answer = test
+
+            Next
+        Next
+
+        'Diagonal from up right to down left:
+        For j = 0 To 16
+            For i = 3 To 19
+
+                test = n_matrix(j, i) * n_matrix(j + 1, i - 1) _
+                    * n_matrix(j + 2, i - 2) * n_matrix(j + 3, i - 3)
+                If test > answer Then answer = test
+
+            Next
+        Next
+
+
+        endTime = Timer
+        Console.WriteLine("Resposta: " & answer)
+        Console.WriteLine("Excution time: " & endTime - starTime)
+        Console.ReadKey()
+    End Sub
+
+End Module
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args){
+
+            long answer = 0;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Joaquin\Dropbox\Project Euler\Sources\Problem 11.txt");
+            int[,] n_matrix = new int[20, 20];
+
+            for (int i = 0; i < 20; i++){
+                
+                string[] split_numbers = lines[i].Split(' ');
+                
+                for (int j = 0; j < 20; j++){
+                    n_matrix[i, j] = Convert.ToInt32(split_numbers[j]);
+                }
+            }
+
+            int test;
+
+            /* Up to Down Directions: */
+            for (int j = 0; j < 17; j++){
+                for (int i = 0; i < 20; i++){
+                    test = n_matrix[j, i] * n_matrix[j+1, i] 
+                        * n_matrix[j+2, i] * n_matrix[j+3, i];
+
+                    answer = (answer < test) ? test : answer;
+                }
+            }
+
+            /* Right to Left Directions: */
+            for (int j = 0; j < 20; j++)
+            {
+                for (int i = 0; i < 17; i++)
+                {
+                    test = n_matrix[j, i] * n_matrix[j, i + 1] 
+                        * n_matrix[j, i + 2] * n_matrix[j, i + 3];
+
+                    answer = (answer < test) ? test : answer;
+                }
+            }
+
+            /* Diagonal from up left to down right: */
+            for (int j = 0; j < 17; j++)
+            {
+                for (int i = 0; i < 17; i++)
+                {
+                    test = n_matrix[j, i] * n_matrix[j + 1, i + 1] 
+                        * n_matrix[j + 2, i + 2] * n_matrix[j + 3, i + 3];
+
+                    answer = (answer < test) ? test : answer;
+                }
+            }
+
+            /* Up to Down Directions: */
+            for (int j = 0; j < 16; j++)
+            {
+                for (int i = 3; i < 20; i++)
+                {
+                    test = n_matrix[j, i] * n_matrix[j + 1, i - 1] 
+                        * n_matrix[j + 2, i - 2] * n_matrix[j + 3, i - 3];
+
+                    answer = (answer < test) ? test : answer;
+                }
+            }
+
+
+            timer.Stop();
+            Console.WriteLine("Answer: {0}", answer);
+            Console.WriteLine("Processing time: {0}", timer.Elapsed);
+            Console.ReadKey();
+        }
+    }
+}

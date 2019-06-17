@@ -1,0 +1,45 @@
+Public Function isaPermutation(number1 As Long, number2 As Long) As Boolean
+
+    Dim count1(9) As Integer
+    Dim count2(9) As Integer
+
+    For Each c As Char In number1.ToString
+        count1(CInt(c.ToString)) += 1
+    Next
+    For Each c As Char In number2.ToString
+        count2(CInt(c.ToString)) += 1
+    Next
+
+    For i = 0 To 9
+        If count1(i) <> count2(i) Then Return False
+    Next
+
+    Return True
+
+End Function
+
+
+
+
+
+public static bool isaPermutation(long number1, long number2){
+    int[] count1 = new int[10];
+    int[] count2 = new int[10];
+
+    foreach(char c in number1.ToString()){
+        count1[(int)Char.GetNumericValue(c)] += 1;
+    }
+
+    foreach(char c in number2.ToString())
+    {
+        count2[(int)Char.GetNumericValue(c)] += 1;
+    }
+
+    for (int i = 0; i < 10; i++){
+        if(count1[i] != count2[i]){
+            return false;
+        }
+    }
+    return true;
+
+}
