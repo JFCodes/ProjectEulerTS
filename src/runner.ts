@@ -17,7 +17,7 @@ class runner {
 
     execute (problem: number): Execution {
         const suite = this.suites[problem]
-        
+
         if (!suite) throw new Error('[RUNNER]: could not find target suite')
 
         // Initiate execution object

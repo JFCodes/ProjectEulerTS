@@ -16,9 +16,10 @@ fs.readdirSync(__dirname + '/suites').forEach(file => {
         if (!suiteId || isNaN(suiteId)) return
 
         try {
-            const suite = require('./suites/' + file).default
-            suites[suiteId] = suite
+            const suite = require('./suites/' + file)
+            suites[suiteId] = suite.default
         } catch(e) {
+            console.log('error requiring suite: ', suiteId)
             return
         }
     }
