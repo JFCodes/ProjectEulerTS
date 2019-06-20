@@ -2,7 +2,7 @@ import suites from './suites'
 import runner from './runner'
 
 const runnerInstance = new runner(suites)
-const problem = 16
+const problem = 19
 
 const suiteExecution =  runnerInstance.execute(problem)
 
