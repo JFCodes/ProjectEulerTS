@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-import { OutgoingHttpHeaders } from 'http';
 
 interface BaseOneDate {
     weekday: number // Monday 1, Tuesday 1, etc
