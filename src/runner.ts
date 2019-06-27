@@ -15,7 +15,7 @@ class runner {
        this.suites = suites 
     }
 
-    execute (problem: number): Execution {
+    async execute (problem: number): Promise<Execution> {
         const suite = this.suites[problem]
 
         if (!suite) throw new Error('[RUNNER]: could not find target suite')
@@ -30,7 +30,7 @@ class runner {
         }
         // Run suite
         try {
-            execution.result = suite.solution()
+            execution.result = await suite.solution()
         } catch(e) {
             // return the execution object as is
             return execution

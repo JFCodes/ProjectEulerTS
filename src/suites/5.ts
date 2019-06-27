@@ -7,11 +7,7 @@ class suite implements Suite {
     summary: string
 
     constructor () {
-        this.problem = 2
-        this.summary = `
-        2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-        What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-        `
+        this.problem = 5
     }
 
     private getMinimumIncrement (limit: number) {

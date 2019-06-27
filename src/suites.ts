@@ -1,7 +1,6 @@
 import * as fs from 'fs'
 
 export interface Suite {
-    summary: string
     problem: number
     solution: Function 
 }
