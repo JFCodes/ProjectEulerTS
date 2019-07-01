@@ -4,7 +4,6 @@ import StringSum from '../utilities/StringSum'
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 16

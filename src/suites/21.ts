@@ -4,7 +4,6 @@ import SumOfDivisors from '../utilities/SumOfDivisors'
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 21

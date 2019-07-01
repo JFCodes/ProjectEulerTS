@@ -9,7 +9,6 @@ interface BaseOneDate {
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 19

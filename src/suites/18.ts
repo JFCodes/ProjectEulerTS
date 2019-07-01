@@ -2,7 +2,6 @@ import { Suite } from '../suites'
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 18

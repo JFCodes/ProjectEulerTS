@@ -2,7 +2,7 @@ import suites from './suites'
 import runner from './runner'
 
 const runnerInstance = new runner(suites)
-const problem = 22
+const problem = 29
 
 runnerInstance.execute(problem).then((suiteExecution) => {
     // TODO: get the problem to execute from the command line
@@ -12,5 +12,3 @@ runnerInstance.execute(problem).then((suiteExecution) => {
         console.log(`[RUN]: Failed to execute problem ${problem}`)
     }
 })
-
-

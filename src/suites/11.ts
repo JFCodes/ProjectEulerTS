@@ -11,7 +11,6 @@ interface productInput {
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 11

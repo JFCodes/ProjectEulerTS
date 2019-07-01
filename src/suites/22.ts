@@ -4,7 +4,6 @@ import { ReadFromFile } from '../utilities/fsPromises'
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 22
@@ -18,7 +17,7 @@ class suite implements Suite {
 
         NAMES.forEach((name, index) => {
             let wordScore = 0
-            NAMES[0].split('').forEach(letter => {
+            name.split('').forEach(letter => {
                 if (letter === '"') return
                 wordScore += letter.charCodeAt(0) - 64
             })

@@ -4,7 +4,6 @@ import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 5

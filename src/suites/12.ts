@@ -4,7 +4,6 @@ import NumberDivisorsCount from '../utilities/NumberDivisorsCount'
 
 class suite implements Suite {
     problem: number
-    summary: string
 
     constructor () {
         this.problem = 12
