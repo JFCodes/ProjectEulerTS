@@ -2,7 +2,7 @@ import suites from './suites'
 import runner from './runner'
 
 const runnerInstance = new runner(suites)
-const problem = 29
+const problem = 31
 
 runnerInstance.execute(problem).then((suiteExecution) => {
     // TODO: get the problem to execute from the command line
