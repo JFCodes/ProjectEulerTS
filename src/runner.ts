@@ -15,6 +15,12 @@ class runner {
        this.suites = suites 
     }
 
+    async executeAll () {
+        for (let suite in this.suites) {
+            await this.execute(Number(suite))
+        }
+    }
+
     async execute (problem: number): Promise<Execution> {
         const suite = this.suites[problem]
 
@@ -39,6 +45,12 @@ class runner {
         execution.endTime = Date.now()
         execution.duration = execution.endTime - execution.startTime
         execution.success = true
+
+        if (execution.success) {
+            console.log(`[RUN]: Executed ${problem} in ${execution.duration} ms with result ${execution.result}`)
+        } else {
+            console.log(`[RUN]: Failed to execute problem ${problem}`)
+        }
 
         return execution
     }

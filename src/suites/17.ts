@@ -96,7 +96,6 @@ class suite implements Suite {
         const LIMIT = 1000
 
         for (let i = 1; i <= 1000; i++) {
-            console.log(this.getNumberText(i))
             const numberText = this.getNumberText(i)
             result += numberText.length
         }
