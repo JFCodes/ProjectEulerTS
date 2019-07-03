@@ -7,7 +7,7 @@ export interface Suite {
 
 const suites: { [index: number]: Suite } = {}
 
-// Scan suites dir
+// Scan suites directory
 fs.readdirSync(__dirname + '/suites').forEach(file => {
     if (file.match(/\.ts$/) !== null) {
 

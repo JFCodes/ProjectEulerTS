@@ -52,6 +52,8 @@ class PrimeSieveGenerator {
         for (let index = 0; index <= this.UPPERBOUND; index++) {
             this.primeArray[index] = true
         }
+        // Fix 0 and 1
+        this.primeArray[0] = this.primeArray[1] = false
         // Cicle multitples
         for (let index = 2; index <= this.UPPERBOUND; index++) {
             for(let multiple = 2 * index; multiple <= this.UPPERBOUND; multiple += index) {
