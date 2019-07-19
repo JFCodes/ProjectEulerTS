@@ -17,4 +17,3 @@ if (problem.toLowerCase() === 'all') {
     if (isNaN(problem)) invalidArg()
     runnerInstance.execute(problem)
 }
-

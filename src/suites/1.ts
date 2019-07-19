@@ -11,8 +11,8 @@ class suite implements Suite {
         const LIMIT = 1000
         let sum = 0
 
-        for (let i = 3; i < LIMIT; i++) {
-            if (i % 3 === 0 || i % 5 === 0) sum += i
+        for (let test = 3; test < LIMIT; test++) {
+            if (test % 3 === 0 || test % 5 === 0) sum += test
         }
         
         return sum
