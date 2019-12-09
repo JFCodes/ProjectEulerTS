@@ -1,4 +1,4 @@
-function SumOfDivisors(targetNumber: number) {
+export default function SumOfDivisors(targetNumber: number) {
     let result = 1
     let LIMIT = Math.ceil(Math.sqrt(targetNumber))
 
@@ -10,5 +10,3 @@ function SumOfDivisors(targetNumber: number) {
 
     return result
 }
-
-export default SumOfDivisors

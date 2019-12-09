@@ -1,4 +1,4 @@
-export default function LexicographicPermutation (toPermut: string): string {
+export default function LexicographicPermutation(toPermut: string): string {
     if (toPermut.length === 1) return toPermut
 
     let indexK = -1

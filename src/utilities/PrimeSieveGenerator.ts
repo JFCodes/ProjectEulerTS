@@ -1,7 +1,7 @@
 // Return an array where each index i
 // is true if i is prime, false otherwise
 
-class PrimeSieveGenerator {
+export default class PrimeSieveGenerator {
     UPPERBOUND: number
     primeArray: boolean[]
 
@@ -62,5 +62,3 @@ class PrimeSieveGenerator {
         }
     }
 }
-
-export default PrimeSieveGenerator

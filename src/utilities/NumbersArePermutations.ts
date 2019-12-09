@@ -1,4 +1,4 @@
-export default function NumbersArePermutations (checkA: number, checkB: number) {
+export default function NumbersArePermutations(checkA: number, checkB: number) {
     const stringA = String(checkA)
     const stringB = String(checkB)
 

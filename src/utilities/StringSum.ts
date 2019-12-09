@@ -1,7 +1,7 @@
 /**
  * Sum two strings representing a big number
  */
-function StringSum (string_A: string, string_B: string): string {
+export default function StringSum (string_A: string, string_B: string): string {
     const reverseString_A = string_A.split('').reverse().map(pos => Number(pos))
     const reverseString_B = string_B.split('').reverse().map(pos => Number(pos))
     const MAX_LENGTH = Math.max(reverseString_A.length, reverseString_B.length)
@@ -21,5 +21,3 @@ function StringSum (string_A: string, string_B: string): string {
     
     return result
 }
-
-export default StringSum
