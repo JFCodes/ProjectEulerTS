@@ -1,4 +1,4 @@
-import { Suite } from './suites'
+import suites, { Suite } from './suites'
 
 interface Execution {
     startTime: number,
@@ -11,7 +11,7 @@ interface Execution {
 class runner {
     suites: { [index: number]: Suite }
 
-    constructor (suites: { [index: number]: Suite }) {
+    constructor () {
        this.suites = suites 
     }
 
@@ -38,10 +38,10 @@ class runner {
         try {
             execution.result = await suite.solution()
         } catch(e) {
-            // return the execution object as is
+            // on error, return the execution object as is
             return execution
         }
-        // Process times and success flag and return execution object        
+        // Process times and success flag and return execution object
         execution.endTime = Date.now()
         execution.duration = execution.endTime - execution.startTime
         execution.success = true

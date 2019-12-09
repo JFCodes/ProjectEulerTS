@@ -1,7 +1,6 @@
-import suites from './suites'
 import runner from './runner'
 
-const runnerInstance = new runner(suites)
+const runnerInstance = new runner()
 const invalidArg = () => {
     console.log(`[RUN]: Invalid problem input`)
     process.exit()

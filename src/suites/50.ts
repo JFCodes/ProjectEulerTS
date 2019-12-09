@@ -16,7 +16,7 @@ class suite implements Suite {
         const MAX_SEQUENCE = 545 // TODO: justify this
         const primeGenerator = new PrimeSieveGenerator(LIMIT)
         const primeList = primeGenerator.getPrimesArray(LIMIT)
-        console.log(primeList.length)
+
         for (let i = MAX_SEQUENCE; i >= 1; i--) {
             let startingPoint = 0
 
