@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import SumOfDivisors from '../utilities/SumOfDivisors'
 
 class suite implements Suite {

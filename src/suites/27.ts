@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
 
 class suite implements Suite {

@@ -3,20 +3,18 @@ import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
 
 class suite implements Suite {
     problem: number
+    summary: string
 
     constructor () {
-        this.problem = 10
+        this.problem = 51
     }
 
     public solution (): number | string {
         let result = 0
 
-        const LIMIT = 2000000 // two millions
-        const primeGenerator = new PrimeSieveGenerator(LIMIT)
-
-        for (let i = 2; i <= LIMIT; i++) {
-            if (primeGenerator.isPrime(i)) result += i
-        }
+        const LIMIT = 99999 // Hypothesis that the number is a 6 digit one
+        
+        
 
         return result
     }

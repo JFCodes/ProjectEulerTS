@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import isPandigital from '../utilities/isPandigital'
 import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
 

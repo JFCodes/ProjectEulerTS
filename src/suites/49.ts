@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
 import NumbersArePermutations from '../utilities/NumbersArePermutations'
 

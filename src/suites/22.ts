@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import { ReadFromFile } from '../utilities/fsPromises'
 
 class suite implements Suite {

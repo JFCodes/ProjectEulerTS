@@ -5,9 +5,7 @@ class suite implements Suite {
     summary: string
 
     constructor () {
-        this.problem = _ <---
-        this.summary = `
-        `
+        this.problem = x
     }
 
     public solution (): number | string {

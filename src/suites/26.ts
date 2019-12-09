@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import DivisionCycleLength from '../utilities/DivisionCycleLength'
 
 class suite implements Suite {

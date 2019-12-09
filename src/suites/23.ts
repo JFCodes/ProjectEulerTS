@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import NumberIsAbundant from '../utilities/NumberIsAbundant'
 
 class suite implements Suite {

@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import StringSum from '../utilities/StringSum'
 
 class suite implements Suite {

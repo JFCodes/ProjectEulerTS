@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import isPandigital from '../utilities/isPandigital'
 
 class suite implements Suite {

@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import LexicographicPermutation from '../utilities/LexicographicPermutation'
 import OnlyUniques from '../utilities/OnlyUniques'
 

@@ -1,7 +1,5 @@
 import { Suite } from '../suites'
 
-import getFactorial from '../utilities/getFactorial'
-
 class suite implements Suite {
     problem: number
     FACTORIALS: number[]

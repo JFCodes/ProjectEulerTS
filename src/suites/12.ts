@@ -1,5 +1,4 @@
 import { Suite } from '../suites'
-
 import NumberDivisorsCount from '../utilities/NumberDivisorsCount'
 
 class suite implements Suite {
