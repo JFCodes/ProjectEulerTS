@@ -38,6 +38,9 @@ class runner {
         try {
             execution.result = await suite.solution()
         } catch(e) {
+            if (e.message) {
+                console.log(`[RUN]: [SUITE: ${suite.problem}]: ${e.message}`)
+            }
             // on error, return the execution object as is
             return execution
         }
