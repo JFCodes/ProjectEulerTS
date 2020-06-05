@@ -20,12 +20,12 @@ export const DeleteFile = ({ fileName }: { fileName: string }): Promise<boolean>
     return new Promise((resolve, reject) => {
         fs.unlink(fileName, (error) => {
             error ? reject(false) : resolve(true)
-        });
+        })
     })
 }
 
 export const ReadFromFileAsync = ({fileName}) => {
-    return fs.readFileSync(fileName, 'utf8');
+    return fs.readFileSync(fileName, 'utf8')
 }
 
 export const CreateDirectoty = ({ dirPath }: { dirPath: string }): void => {

@@ -19,7 +19,7 @@ export default function NumberDivisorsCount(targetNumber: number) {
         }
 
         if (remainder === semiRemainder) {
-            remainder = 1;
+            remainder = 1
             vector[0] = 1
         }
     }

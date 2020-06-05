@@ -1,5 +1,5 @@
 export default function isPalindrome(test: number): boolean {
-    if (test < 10) return false;
+    if (test < 10) return false
 
     const testString: string = String(test)
     const testStringLength = testString.length
