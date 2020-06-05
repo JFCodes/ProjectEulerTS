@@ -25,7 +25,7 @@ class suite implements Suite {
     problem: number
 
     constructor () {
-        this.problem = 42
+        this.problem = 54
     }
 
     public async solution (): Promise<number | string> {
