@@ -18,7 +18,7 @@ fs.readdirSync(__dirname + '/suites').forEach(file => {
             const suite = require('./suites/' + file)
             suites[suiteId] = suite.default
         } catch(e) {
-            console.log('error requiring suite: ', suiteId)
+            console.log('error requiring suite: ', suiteId, e)
             return
         }
     }

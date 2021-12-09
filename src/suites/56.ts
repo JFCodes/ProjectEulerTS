@@ -14,29 +14,21 @@ class suite implements Suite {
 
         const BASE_LIMIT = 100
         const POWER_LIMIT = 100
+        // Check https://projecteuler.net/action=redirect;post_id=288
+        // for lower bound limits
+        const BASE_LOWER_BOUND = 90
+        const POWER_LOWER_BOUND = 90
         // Find a sensible justification for the search domain
 
-        // NOTE: STOPAGE RULE JUSTIFICATION
-        // Start iterating from top to bottom
-        // Calculate the max number of digits a power generates
-        // Assume that:
-        //  1. Next lower power cannot generate more digits
-        //  2. All those digits could be hypothically 9
-        // If the sum of those is not greater then the current result
-        // then, no other lower power can generate a sum of digits greater
-        // then the one already found.
-
-        for (let power = POWER_LIMIT; power > 0; power--) {
+        for (let power = POWER_LIMIT; power > POWER_LOWER_BOUND; power--) {
             let maxPowerDigitCount = 0;
-            for (let base = BASE_LIMIT; base > 0; base--) {
+            console.log('power: ', power)
+            for (let base = BASE_LIMIT; base > BASE_LOWER_BOUND; base--) {
                 let powerString: string = StringPower(base, power)
                 let digitSum: number = SumOfDigits(powerString)
                 if (digitSum > result) result = digitSum
                 if (base === BASE_LIMIT) maxPowerDigitCount = powerString.length
             }
-            // Test if the next (lower) power can be generate a sum of digits
-            // greater then the current result
-            if (maxPowerDigitCount * 9 < result) return result
         }
 
         return result

@@ -1,7 +1,7 @@
 import StringSum from './StringSum'
 
 /**
- * Given a base in string form, return base to the power also in a string
+ * Given a base in string, return base to the power also in a string
  */
 export default function StringPower (base: number, power: number): string {
     // For power 1, the result is the base (n to power 1 = n)
