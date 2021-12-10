@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 class suite implements Suite {
     problem: number
@@ -15,7 +15,7 @@ class suite implements Suite {
         const UPPER_BOUND = 999
         let maxConsecutive = 0
         // TODO: justify this prime limit...
-        const primeGenerator = new PrimeSieveGenerator(100000)
+        const primeGenerator = new primeSieveGenerator(100000)
         const generateValue = (n: number, coefA: number, coefB: number): number => {
             return (n * n) + (n * coefA) + coefB
         }

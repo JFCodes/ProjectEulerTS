@@ -1,6 +1,6 @@
 import { Suite } from '../suites'
-import StringPower from '../utilities/StringPower'
-import SumOfDigits from '../utilities/sumOfDigits'
+import stringPower from '../utilities/string-power'
+import SumOfDigits from '../utilities/sum-of-digits'
 
 class suite implements Suite {
     problem: number
@@ -24,7 +24,7 @@ class suite implements Suite {
             let maxPowerDigitCount = 0;
             console.log('power: ', power)
             for (let base = BASE_LIMIT; base > BASE_LOWER_BOUND; base--) {
-                let powerString: string = StringPower(base, power)
+                let powerString: string = stringPower(base, power)
                 let digitSum: number = SumOfDigits(powerString)
                 if (digitSum > result) result = digitSum
                 if (base === BASE_LIMIT) maxPowerDigitCount = powerString.length

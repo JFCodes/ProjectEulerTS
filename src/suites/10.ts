@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 class suite implements Suite {
     problem: number
@@ -12,7 +12,7 @@ class suite implements Suite {
         let result = 0
 
         const LIMIT = 2000000 // two millions
-        const primeGenerator = new PrimeSieveGenerator(LIMIT)
+        const primeGenerator = new primeSieveGenerator(LIMIT)
 
         for (let i = 2; i <= LIMIT; i++) {
             if (primeGenerator.isPrime(i)) result += i

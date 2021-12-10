@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import SumOfDivisors from '../utilities/SumOfDivisors'
+import sumOfDivisors from '../utilities/sum-of-divisors'
 
 class suite implements Suite {
     problem: number
@@ -17,10 +17,10 @@ class suite implements Suite {
         for (let i = 2; i <= LIMIT; i++) {
             if (memorized[i]) continue
 
-            let sumDivisors = SumOfDivisors(i)
+            let sumDivisors = sumOfDivisors(i)
             if (sumDivisors === i) continue
             
-            if (SumOfDivisors(sumDivisors) === i) {
+            if (sumOfDivisors(sumDivisors) === i) {
                 result += i + sumDivisors
                 memorized[sumDivisors] = true
             }

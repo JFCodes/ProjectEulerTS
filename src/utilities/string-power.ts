@@ -1,9 +1,9 @@
-import StringSum from './StringSum'
+import stringSum from './string-sum'
 
 /**
  * Given a base in string, return base to the power also in a string
  */
-export default function StringPower (base: number, power: number): string {
+export default function (base: number, power: number): string {
     // For power 1, the result is the base (n to power 1 = n)
     let result = String(base)
     if (power === 1) return result
@@ -14,7 +14,7 @@ export default function StringPower (base: number, power: number): string {
         let multiplication = product
 
         for (let productI = 2; productI <= base; productI++) {
-            multiplication = StringSum(multiplication, product)
+            multiplication = stringSum(multiplication, product)
         }
         
         result = multiplication

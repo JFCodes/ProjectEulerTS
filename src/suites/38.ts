@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import isPandigital from '../utilities/isPandigital'
+import isPandigital from '../utilities/is-pandigital'
 
 class suite implements Suite {
     problem: number

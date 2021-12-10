@@ -1,4 +1,4 @@
-export default function isAbundant(target: number): boolean {
+export default function (target: number): boolean {
     let sumOfDivisors = 1
 
     for (let i = 2; i <= Math.sqrt(target); i++) {

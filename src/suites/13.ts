@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import StringSum from '../utilities/StringSum'
+import stringSum from '../utilities/string-sum'
 
 class suite implements Suite {
     problem: number
@@ -116,7 +116,7 @@ class suite implements Suite {
         ]
 
         stringNumber.forEach(instance => {
-            sum = StringSum(sum, instance)
+            sum = stringSum(sum, instance)
         })
 
         result = sum.substr(0, 10)

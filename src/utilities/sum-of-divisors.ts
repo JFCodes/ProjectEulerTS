@@ -1,4 +1,4 @@
-export default function SumOfDivisors(targetNumber: number) {
+export default function (targetNumber: number) {
     let result = 1
     let LIMIT = Math.ceil(Math.sqrt(targetNumber))
 

@@ -1,6 +1,5 @@
 import { Suite } from '../suites'
-
-import StringSum from '../utilities/StringSum'
+import stringSum from '../utilities/string-sum'
 
 class suite implements Suite {
     problem: number
@@ -16,7 +15,7 @@ class suite implements Suite {
         let number = '2'
 
         for (let i = 2; i <= POWER; i++) {
-            number = StringSum(number, number)
+            number = stringSum(number, number)
         }
 
         result = number.split('').reduce((sum, position) => sum + Number(position), 0)

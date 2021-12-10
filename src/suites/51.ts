@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 interface TestResult {
     primeCounter: number
@@ -8,7 +8,7 @@ interface TestResult {
 class suite implements Suite {
     problem: number
     summary: string
-    primeGenerator: null | PrimeSieveGenerator
+    primeGenerator: null | primeSieveGenerator
 
     constructor () {
         this.problem = 51
@@ -20,7 +20,7 @@ class suite implements Suite {
         const START_NUMBER = 100000 // Smallest 6 digit number
         const PRIME_COUNT_TARGET = 8
 
-        this.primeGenerator = new PrimeSieveGenerator(LIMIT)
+        this.primeGenerator = new primeSieveGenerator(LIMIT)
 
         for (let test = START_NUMBER; test <= LIMIT; test++) {
             // Only test if the number itself is prime

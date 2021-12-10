@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import Combinations from '../utilities/Combinations'
+import combinations from '../utilities/combinations'
 
 class suite implements Suite {
     problem: number
@@ -15,7 +15,7 @@ class suite implements Suite {
 
         for (let pool = 1; pool <= 100; pool++) {
             for (let draws = 1; draws <= pool; draws++) {
-                if (Combinations(pool, draws) > TARGET) result++
+                if (combinations(pool, draws) > TARGET) result++
             }
         }
         

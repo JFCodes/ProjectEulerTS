@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import StringSum from '../utilities/StringSum'
+import stringSum from '../utilities/string-sum'
 
 class suite implements Suite {
     problem: number
@@ -17,7 +17,7 @@ class suite implements Suite {
         let numberFibo = ''
 
         while(numberFibo.length < LIMIT) {
-            numberFibo = StringSum(numberOne, numberTwo)
+            numberFibo = stringSum(numberOne, numberTwo)
 
             numberOne = numberTwo
             numberTwo = numberFibo

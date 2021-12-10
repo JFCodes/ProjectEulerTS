@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 class suite implements Suite {
     problem: number
@@ -9,7 +9,7 @@ class suite implements Suite {
     }
 
     private getMinimumIncrement (limit: number) {
-        const primeArray = new PrimeSieveGenerator(limit)
+        const primeArray = new primeSieveGenerator(limit)
         const primesNumbers = primeArray.getPrimesArray(limit)
 
         return primesNumbers.reduce((sum, prime) => sum * prime, 1)

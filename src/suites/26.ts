@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import DivisionCycleLength from '../utilities/DivisionCycleLength'
+import divisionCycleLength from '../utilities/division-cycle-length'
 
 class suite implements Suite {
     problem: number
@@ -15,7 +15,7 @@ class suite implements Suite {
         let maxLenght = 0
 
         for(let i = 1; i < LIMIT; i++) {
-            const cycleLength = DivisionCycleLength(i)
+            const cycleLength = divisionCycleLength(i)
             if (cycleLength > maxLenght) {
                 maxLenght = cycleLength
                 result = i

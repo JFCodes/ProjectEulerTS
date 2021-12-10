@@ -1,4 +1,4 @@
-export default function NumberDivisorsCount(targetNumber: number) {
+export default function (targetNumber: number) {
 
     const LIMIT: number = Math.ceil(Math.sqrt(targetNumber))
     const vector: number[] = []

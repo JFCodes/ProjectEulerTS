@@ -1,15 +1,15 @@
 import { Suite } from '../suites'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 class suite implements Suite {
     problem: number
     LIMIT: number
-    primeGenerator: PrimeSieveGenerator
+    primeGenerator: primeSieveGenerator
 
     constructor () {
         this.problem = 37
         this.LIMIT = 1000000 // one million
-        this.primeGenerator = new PrimeSieveGenerator(this.LIMIT)
+        this.primeGenerator = new primeSieveGenerator(this.LIMIT)
     }
     
     private subNumbersArePrime (target: number, leftToRight: boolean) {

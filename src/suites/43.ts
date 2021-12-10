@@ -1,6 +1,6 @@
 import { Suite } from '../suites'
-import LexicographicPermutation from '../utilities/LexicographicPermutation'
-import OnlyUniques from '../utilities/OnlyUniques'
+import lexicographicPermutation from '../utilities/lexicographic-permutation'
+import onlyUniques from '../utilities/only-uniques'
 
 class suite implements Suite {
     problem: number
@@ -20,7 +20,7 @@ class suite implements Suite {
         for (let candidate = 17; candidate < 1000; candidate = candidate + 17) {
             let candidateString = String(candidate)
             if (candidate < 100) candidateString = `0${candidateString}`
-            if (!OnlyUniques(candidateString)) continue
+            if (!onlyUniques(candidateString)) continue
             multiples17.push(candidateString)
 
         }
@@ -46,7 +46,7 @@ class suite implements Suite {
 
                 if (canDivide) result += Number(fullNumber)
                 savePermutation = testPermutation
-                testPermutation = LexicographicPermutation(testPermutation)
+                testPermutation = lexicographicPermutation(testPermutation)
 
             } while (savePermutation !== testPermutation)
         }

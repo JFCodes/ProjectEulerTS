@@ -1,4 +1,4 @@
-export default function LexicographicPermutation(toPermut: string): string {
+export default function (toPermut: string): string {
     if (toPermut.length === 1) return toPermut
 
     let indexK = -1
@@ -22,7 +22,6 @@ export default function LexicographicPermutation(toPermut: string): string {
     
     const savePermut = toPermut
     toPermut = ''
-
 
     for (let i = 0; i < savePermut.length; i++) {
         if (i <= indexK) {

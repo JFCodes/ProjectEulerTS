@@ -1,6 +1,6 @@
 import { Suite } from '../suites'
 
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 class suite implements Suite {
     problem: number
@@ -17,7 +17,7 @@ class suite implements Suite {
 
         const LIMIT = 10001 // then thounsand and one
         const SENSIBLE_SEARCH_LIMIT = 120000
-        const primeGenerator = new PrimeSieveGenerator(SENSIBLE_SEARCH_LIMIT)
+        const primeGenerator = new primeSieveGenerator(SENSIBLE_SEARCH_LIMIT)
 
         result = primeGenerator.getTHPrime(LIMIT)
 

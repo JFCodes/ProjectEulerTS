@@ -1,6 +1,6 @@
 import { Suite } from '../suites'
-import isPandigital from '../utilities/isPandigital'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import isPandigital from '../utilities/is-pandigital'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 class suite implements Suite {
     problem: number
@@ -16,7 +16,7 @@ class suite implements Suite {
         // 8 digits number cannot be prime and pandigital (1 + 2 + ... + 9 = 36), 36 divisable by 3
         // Largets 7 digit number pandigital is 7654321, hence the limit
         const LIMIT = 7654321
-        const primeGenerator = new PrimeSieveGenerator(LIMIT)
+        const primeGenerator = new primeSieveGenerator(LIMIT)
 
         for (let candidate = LIMIT; candidate > 0; candidate--) {
             if (!primeGenerator.isPrime(candidate)) continue

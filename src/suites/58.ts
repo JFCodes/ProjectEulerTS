@@ -1,4 +1,4 @@
-import isPrime from '../utilities/isPrime'
+import isPrime from '../utilities/is-prime'
 import { Suite } from '../suites'
 
 class suite implements Suite {

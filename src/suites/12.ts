@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import NumberDivisorsCount from '../utilities/NumberDivisorsCount'
+import numberDivisorsCount from '../utilities/numberDivisorsCount'
 
 class suite implements Suite {
     problem: number
@@ -12,7 +12,7 @@ class suite implements Suite {
         let result = 0
         let natural = 1
 
-        while (NumberDivisorsCount(result) < 500) {
+        while (numberDivisorsCount(result) < 500) {
             result += natural
             natural++
         }

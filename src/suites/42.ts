@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import { ReadFromFile } from '../utilities/fsPromises'
+import { ReadFromFile } from '../utilities/fs-promises'
 
 class suite implements Suite {
     problem: number

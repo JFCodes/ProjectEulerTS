@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import NumberIsAbundant from '../utilities/NumberIsAbundant'
+import numberIsAbundant from '../utilities/number-is-abundant'
 
 class suite implements Suite {
     problem: number
@@ -18,7 +18,7 @@ class suite implements Suite {
 
         // Fill the isAmbundantArray
         for (let i = 12; i <= LIMIT; i++) {
-            if(NumberIsAbundant(i)) arrayOfAbundants.push(i)
+            if(numberIsAbundant(i)) arrayOfAbundants.push(i)
         }
 
         // Double loop arrayOfAbundants, their sum isSumOfAbundants

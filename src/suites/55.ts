@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import isPalindrome from '../utilities/isPalindrome'
+import isPalindrome from '../utilities/is-palindrome'
 
 const LYCHREL_THRESHOLD = 50
 

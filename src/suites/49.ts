@@ -1,6 +1,6 @@
 import { Suite } from '../suites'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
-import NumbersArePermutations from '../utilities/NumbersArePermutations'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
+import numbersArePermutations from '../utilities/numbers-are-permutations'
 
 class suite implements Suite {
     problem: number
@@ -15,7 +15,7 @@ class suite implements Suite {
         const LIMIT = 9999
         const LOWER_BOUND = 7660 // NOTE 2
         const EXCLUDE = 8147 // Exclude the other known solution from the problem set
-        const primeGenerator = new PrimeSieveGenerator(LIMIT)
+        const primeGenerator = new primeSieveGenerator(LIMIT)
 
         const STEP = 3330
 
@@ -26,8 +26,8 @@ class suite implements Suite {
             if (!primeGenerator.isPrime(secondTerm)) continue
             if (!primeGenerator.isPrime(thirdTerm)) continue
             // If A is permutation of B, and B is permutation of C, then C is permutation of A
-            if (!NumbersArePermutations(firstTerm, secondTerm)) continue
-            if (!NumbersArePermutations(firstTerm, thirdTerm)) continue
+            if (!numbersArePermutations(firstTerm, secondTerm)) continue
+            if (!numbersArePermutations(firstTerm, thirdTerm)) continue
 
             result = `${firstTerm}${secondTerm}${thirdTerm}`
         }

@@ -1,4 +1,4 @@
-export default function OnlyUniques(testString: string) {
+export default function (testString: string) {
     let memorize = {}
 
     for (let character of testString) {

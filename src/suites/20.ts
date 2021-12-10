@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import StringSum from '../utilities/StringSum'
+import stringSum from '../utilities/string-sum'
 
 class suite implements Suite {
     problem: number
@@ -17,7 +17,7 @@ class suite implements Suite {
 
         for (let n = 2; n <= LIMIT; n++) {
             for (let iteration = 2; iteration <= n; iteration++) {
-                currentNumber = StringSum(currentNumber, subNumber)
+                currentNumber = stringSum(currentNumber, subNumber)
             }
             subNumber = currentNumber
         }

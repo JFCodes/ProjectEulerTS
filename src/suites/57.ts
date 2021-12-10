@@ -1,4 +1,4 @@
-import StringSum from '../utilities/StringSum'
+import stringSum from '../utilities/string-sum'
 import { Suite } from '../suites'
 
 type Fraction = {
@@ -24,8 +24,8 @@ class suite implements Suite {
             denominator: '2'
         }
         for(let expansion = 1; expansion < EXPANSIONS; expansion++) {
-            const denominatorTimesTwo = StringSum(fraction.denominator, fraction.denominator);
-            const denominator = StringSum(fraction.numerator, denominatorTimesTwo)
+            const denominatorTimesTwo = stringSum(fraction.denominator, fraction.denominator);
+            const denominator = stringSum(fraction.numerator, denominatorTimesTwo)
             // Flip numerator -> denominator for next iteration
             fraction = {
                 numerator: fraction.denominator,
@@ -40,7 +40,7 @@ class suite implements Suite {
 }
 
 function checkExpansionDigits(fraction: Fraction): boolean {
-    const newNumerator = StringSum(fraction.numerator, fraction.denominator)
+    const newNumerator = stringSum(fraction.numerator, fraction.denominator)
     return newNumerator.length > fraction.denominator.length
 }
 

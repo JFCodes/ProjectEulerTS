@@ -1,4 +1,4 @@
-export default function DivisionCycleLength(target: number) {
+export default function (target: number) {
     let remainder: number = 1
     let repeating: boolean[] = []
     let cycleLength: number = 0 

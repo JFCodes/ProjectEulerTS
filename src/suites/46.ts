@@ -1,5 +1,5 @@
 import { Suite } from '../suites'
-import PrimeSieveGenerator from '../utilities/PrimeSieveGenerator'
+import primeSieveGenerator from '../utilities/prime-sieve-generator'
 
 class suite implements Suite {
     problem: number
@@ -13,7 +13,7 @@ class suite implements Suite {
         
         // TODO: can we ever justify this limit?
         const LIMIT = 10000
-        const primeGenerator = new PrimeSieveGenerator(LIMIT)
+        const primeGenerator = new primeSieveGenerator(LIMIT)
         let candidate = 9
 
         while (result === 0) {
